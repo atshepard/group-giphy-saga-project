@@ -19,7 +19,7 @@ function* fetchSearch(action) {
     try {
         
         let response = yield axios.get(`/api/search/${action.payload}`)
-        yield put({ type: 'SET_RESULTS', payload: response.data });
+        yield put({ type: 'SET_RESULTS', payload: response.data.data });
 
 
     } catch (err) {

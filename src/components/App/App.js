@@ -7,23 +7,37 @@ import { useDispatch, useSelector } from 'react-redux'
 function App(props) {
   const [newQuery, setNewQuery] = useState('');
   const dispatch = useDispatch();
+  const results = useSelector(store => store.getResults);
   // useEffect(() => {
   //   //get route
   // }, []);
 
   const getSearchItems = () => {
-
-
     dispatch({ type: 'SET_QUERY', payload: newQuery })
   }
 
+//   <div key={i}>
+//   <p>{result.data?.images.original.url}</p>
+// </div>
+
+// {results.map((result, i) => {
+//   result.map((item, i) => {
+//     <p>{item.data?.images.original.url}</p>
+//   })
+// })}
 
   return (
+    <>
     <div>
       <h1>Giphy Search!</h1>
       <input type="text" placeholder="SEARCH" value={newQuery} onChange={(event) => setNewQuery(event.target.value)} />
       <button onClick={getSearchItems}>SEARCH</button>
     </div>
+    <div>
+    {/* <img src={results[0]?.images.original.url}/> */}
+    <img src={results[0]?.images.original.url}/>
+    </div>
+    </>
   );
 }
 
