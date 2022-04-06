@@ -33,10 +33,10 @@ function App(props) {
       <input type="text" placeholder="SEARCH" value={newQuery} onChange={(event) => setNewQuery(event.target.value)} />
       <button onClick={getSearchItems}>SEARCH</button>
     </div>
-    <div>
-    {/* <img src={results[0]?.images.original.url}/> */}
+    
     <img src={results[0]?.images.original.url}/>
-    </div>
+    {/* <img src={results?.images.original.url}/> */}
+    
     </>
   );
 }
