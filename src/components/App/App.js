@@ -16,32 +16,24 @@ function App(props) {
     dispatch({ type: 'SET_QUERY', payload: newQuery })
   }
 
-//   <div key={i}>
-//   <p>{result.data?.images.original.url}</p>
-// </div>
-
-// {results.map((result, i) => {
-//   result.map((item, i) => {
-//     <p>{item.data?.images.original.url}</p>
-//   })
-// })}
-
+  // console.log(results);
   return (
     <>
-    <div>
-      <h1>Giphy Search!</h1>
-      <input type="text" placeholder="SEARCH" value={newQuery} onChange={(event) => setNewQuery(event.target.value)} />
-      <button onClick={getSearchItems}>SEARCH</button>
-    </div>
-    <img src={results[0]?.images.original.url}/>
-    {/* <button onClick={console.log(results)}>TEST</button> */}
-    {/* <img src={results?.images.original.url}/> */}
-    {/*     
-    {results.map(result => {
       <div>
-        <img src={result?.images.original.url} />
+        <h1>Giphy Search!</h1>
+        <input type="text" placeholder="SEARCH" value={newQuery} onChange={(event) => setNewQuery(event.target.value)} />
+        <button onClick={getSearchItems}>SEARCH</button>
       </div>
-    })} */}
+    
+
+      {results.map((result, i) => {
+        console.log(result);
+        return (
+          <div key={i}>
+            <img src={result.images.original.url} />
+          </div>
+        )
+      })}
 
     </>
   );
