@@ -11,9 +11,30 @@ import { takeEvery, put } from 'redux-saga/effects'
 const sagaMiddleware = createSagaMiddleware();
 
 function* rootSaga() {
-yield takeEvery('SET_QUERY', fetchSearch)
+yield takeEvery('SET_QUERY', fetchSearch);
+yield takeEvery('ADD_FAV', addFavorite);
+yield takeEvery('GET_CATEGORIES', getCategories)
 };
 
+function* getCategories() {
+    try { 
+        let response = yield axios.get('/api/category')
+        yield put({type: 'SET_CATEGORIES', payload: response.data})
+}   catch (err) {
+    console.log(err);
+}
+}
+
+const categoryReducer = ( state = [], action) => {
+    if (action.type === 'SET_CATEGORIES') {
+        return action.payload
+    }
+    return state;
+}
+
+function* addFavorite() {
+    //axios.post('/api/favorite')
+}
 
 function* fetchSearch(action) {
     try {
@@ -36,7 +57,7 @@ const getResults = (state = [], action) => {
 
 const storeInstance = createStore(
     combineReducers({
-        getResults
+        getResults, categoryReducer
     }),
     applyMiddleware(sagaMiddleware, logger)
 );
