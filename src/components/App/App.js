@@ -20,7 +20,7 @@ function App(props) {
     dispatch({ type: 'SET_QUERY', payload: newQuery })
   }
 
-  console.log(categories);
+  //console.log(categories);
   return (
     <>
       <div>

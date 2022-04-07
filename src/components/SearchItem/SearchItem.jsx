@@ -6,10 +6,17 @@ import { useDispatch, useSelector } from 'react-redux'
 function SearchItem({ src }) {
     const dispatch = useDispatch();
     const categories = useSelector(store => store.categoryReducer);
+    const [category, setCategory] = useState('')
 
     const addFav = () => {
+        console.log(category);
 
-        // dispatch({ type: 'ADD_FAV', payload: thisItem})
+        let thisItem = {
+            url: src,
+            categoryId: category
+        }
+        console.log(thisItem);
+        dispatch({ type: 'ADD_FAV', payload: thisItem})
     }
 
     return (<>
@@ -23,7 +30,7 @@ function SearchItem({ src }) {
                     return (
                     <div key={category.id}>
                         <label htmlFor={category.id}>{category.name}</label>
-                        <input id={category.id} type="radio" value={category.name} name="category" />
+                        <input onChange={() => setCategory(category.id)} id={category.id} type="radio" value={category.name} name="category" />
                     </div>
                     )})}
 

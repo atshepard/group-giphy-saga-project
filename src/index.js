@@ -32,8 +32,17 @@ const categoryReducer = ( state = [], action) => {
     return state;
 }
 
-function* addFavorite() {
-    //axios.post('/api/favorite')
+const favoritesReducer = ( state = [], action ) => {
+    if (action.type === 'SET_FAVORITES') {
+        return action.payload
+    }
+    return state;
+}
+
+function* addFavorite(action) {
+    yield axios.post('/api/favorite', action.payload)
+    // yield put({type: ''})
+    
 }
 
 function* fetchSearch(action) {
